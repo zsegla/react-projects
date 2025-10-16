@@ -1,16 +1,48 @@
-# React + Vite
+# Footballer Search App (React + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A small demo that lets you search a static list of footballer names with a debounced input.
 
-Currently, two official plugins are available:
+This project centers on `src/App.jsx` (`FootballerSearch`) and demonstrates:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- A text input bound to local state used for searching.
+- A simple `useDebounce` hook located in `src/hooks/useDebounce` that delays search processing until the user stops typing (1 second in this app).
+- Filtering a local `footballers` array for substring matches (case-insensitive).
+- Logging results to the console — the component currently shows only the input and title in the UI.
 
-## React Compiler
+Files of interest
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- `src/App.jsx` — The `FootballerSearch` component and default export.
+- `src/hooks/useDebounce.jsx` — Debounce hook used by the component.
+- `src/footballers` — The local array of footballer names used for matching.
 
-## Expanding the ESLint configuration
+How it works (quick)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- The input updates `query` immediately.
+- `useDebounce` returns a debounced version of `query` (`debouncedQuery`) that updates 1000ms after typing stops.
+- When `debouncedQuery` changes the effect filters `footballers` and logs the matches to the console.
+
+Run locally
+
+1. cd into the project folder:
+
+```bash
+cd react-mini-projects/my-react-app1
+```
+
+2. Install dependencies and start the dev server:
+
+```bash
+npm install
+npm run dev
+```
+
+Open the dev server URL shown by Vite (usually http://localhost:5173). Open the browser console to see search results printed as you type.
+
+Suggestions
+
+- Update the component to render the filtered results in the UI instead of logging to the console.
+- Parametrize the debounce delay or expose it as a prop for faster/slower behavior.
+
+License / template
+
+- This repository was bootstrapped from a Vite React template; feel free to expand or replace the template docs.

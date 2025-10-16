@@ -1,16 +1,45 @@
-# React + Vite
+# Fruit Search App (React + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A small React + Vite demo that provides a searchable list of fruit names using a remote suggestions API.
 
-Currently, two official plugins are available:
+This project contains a focused component at `src/App.jsx` (`FruitsSearch`) that demonstrates:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- A controlled search input with a 700ms debounce implemented via `useEffect` + `setTimeout`.
+- Fetching suggestions from the public API: `https://fruit-search.freecodecamp.rocks/api/fruits?q=<query>`.
+- Displaying results as a list of fruit names or a "No results found" message.
+- Basic error handling that logs fetch errors to the console.
 
-## React Compiler
+Files of interest
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- `src/App.jsx` — Implements the `FruitsSearch` component and mounts it in the default `App` export.
 
-## Expanding the ESLint configuration
+How it works (quick)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- The search input updates a local `query` state.
+- If `query` is empty the results are cleared.
+- When `query` is non-empty a 700ms timer runs; after the delay the app calls the remote API and maps the returned objects to their `name` values.
+- Results are rendered below the input as paragraphs with class `result-item`.
+
+Run locally
+
+1. cd into the project folder:
+
+```bash
+cd react-mini-projects/fruit-search-app
+```
+
+2. Install and start the dev server:
+
+```bash
+npm install
+npm run dev
+```
+
+Open the URL printed by Vite (usually http://localhost:5173) and type into the search box. The form submission is prevented, so pressing Enter won't reload the page.
+
+Notes & suggestions
+
+- The component uses a simple time-based debounce. If you prefer a reusable hook you can extract the logic into `useDebounce`.
+- Errors during fetch are only logged to the console — consider adding UI feedback for network errors.
+
+License / template
