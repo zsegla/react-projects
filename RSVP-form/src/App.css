@@ -1,0 +1,90 @@
+
+/* Container for the whole form */
+.rsvp-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fafafa;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Labels for inputs */
+#rsvp-form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+/* Standard inputs (text, email, number) */
+#rsvp-form input[type="text"],
+#rsvp-form input[type="email"],
+#rsvp-form input[type="number"] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Checkbox container to display checkbox inline */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.checkbox-container label {
+  margin-right: 0.5rem;
+  font-weight: normal; /* lighter than other labels */
+}
+
+/* Submit button styling */
+#rsvp-form button[type="submit"] {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #007bff;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#rsvp-form button[type="submit"]:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+#rsvp-form button[type="submit"]:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+/* Success message styling */
+.success {
+  color: green;
+  font-weight: bold;
+  margin-top: 1rem;
+  animation: fadeIn 0.5s;
+}
+
+/* Submission summary styling */
+#submission-summary {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Fade-in keyframe for success message */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
